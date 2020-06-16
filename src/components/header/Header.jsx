@@ -21,7 +21,6 @@ export default function Header() {
           style={{ marginRight: '0.5em' }}
         >
           <Dropdown.Menu>
-            <Dropdown.Header>Categories</Dropdown.Header>
             <Dropdown.Item as={NavLink} to={`/myMenuPlans`}>
               My Menu Plans
             </Dropdown.Item>
@@ -67,8 +66,8 @@ export default function Header() {
           Home
         </Menu.Item>
 
-        <Menu.Item as={NavLink} to='/jokes' name='jokes'>
-          Jokes
+        <Menu.Item as={NavLink} to='/CreateMenuPlan' name='menuPlans'>
+          Create Menu Plan
         </Menu.Item>
 
         <Menu.Item as={NavLink} to='/scrape' name='scrape'>

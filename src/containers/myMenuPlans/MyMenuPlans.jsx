@@ -1,31 +1,32 @@
 import React from 'react';
 import { Segment, Header, Card, Button } from 'semantic-ui-react';
-import {
-  useAsyncDispatch,
-  asyncFetch,
-  useAsyncState
-} from '../../contexts/AsyncContext.jsx';
 import { useAuthState } from '../../contexts/AuthContext.jsx';
+import { apiUtils } from '../../utils/apiUtils.js';
 
 const MyMenuPlans = () => {
-  const dispatch = useAsyncDispatch();
-  const state = useAsyncState();
   const { username } = useAuthState();
+  const [menuPlans, setMenuPlans] = React.useState();
 
   React.useEffect(() => {
-    asyncFetch(dispatch, `/menuplans/${username}`, {
-      method: 'GET'
-    });
-  }, [dispatch, username]);
+    const opts = apiUtils.makeOptions('GET');
+    apiUtils
+      .fetchData(`/menuplans/${username}`, opts)
+      .then((res) => setMenuPlans(res));
+  }, [username]);
 
-  const handleRemoveMenuPlan = () => {};
+  const handleRemoveMenuPlan = (id) => {
+    const opts = apiUtils.makeOptions('GET');
+    apiUtils
+      .fetchData(`/menuplans/remove/${username}/${id}`, opts)
+      .then((res) => setMenuPlans(res.menuPlans));
+  };
 
   return (
     <Segment raised style={{ height: '100vh' }}>
       <Header>My Menu Plans</Header>
       <Card.Group itemsPerRow={3}>
-        {state.payload &&
-          state.payload.map((menuPlan) => (
+        {menuPlans &&
+          menuPlans.map((menuPlan) => (
             <Card key={menuPlan.id}>
               <Card.Content>
                 <Card.Header>Week {menuPlan.weeknumber}</Card.Header>
@@ -41,7 +42,11 @@ const MyMenuPlans = () => {
                   <Button basic color='green'>
                     Edit
                   </Button>
-                  <Button basic color='red' onClick={handleRemoveMenuPlan()}>
+                  <Button
+                    basic
+                    color='red'
+                    onClick={() => handleRemoveMenuPlan(menuPlan.id)}
+                  >
                     Delete
                   </Button>
                 </div>

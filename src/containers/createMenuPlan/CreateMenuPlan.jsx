@@ -7,11 +7,14 @@ import {
   asyncFetch
 } from '../../contexts/AsyncContext.jsx';
 import { useAuthState } from '../../contexts/AuthContext.jsx';
+import { useHistory } from 'react-router-dom';
 
 const CreateMenuPlan = () => {
   const dispatch = useAsyncDispatch();
   const state = useAsyncState();
   const { username } = useAuthState();
+
+  let history = useHistory();
 
   const [selectedChoices, setSelectedChoices] = React.useState({
     menuPlans: []
@@ -48,6 +51,7 @@ const CreateMenuPlan = () => {
         username
       }
     });
+    history.push('/myMenuPlans');
   };
 
   return (
