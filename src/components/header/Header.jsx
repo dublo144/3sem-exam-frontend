@@ -14,15 +14,6 @@ export default function Header() {
   const handleLoginLogOut = () => {
     return isLoggedIn ? (
       <Menu.Item position='right'>
-        <Button
-          as={NavLink}
-          id='userpageBtn'
-          to={`/user/${username}`}
-          content={username}
-          icon='user'
-          primary
-          style={{ marginRight: '0.5em' }}
-        />
         <Dropdown
           text={username}
           pointing

@@ -18,6 +18,8 @@ const MyMenuPlans = () => {
     });
   }, [dispatch, username]);
 
+  const handleRemoveMenuPlan = () => {};
+
   return (
     <Segment raised style={{ height: '100vh' }}>
       <Header>My Menu Plans</Header>
@@ -39,7 +41,7 @@ const MyMenuPlans = () => {
                   <Button basic color='green'>
                     Edit
                   </Button>
-                  <Button basic color='red'>
+                  <Button basic color='red' onClick={handleRemoveMenuPlan()}>
                     Delete
                   </Button>
                 </div>

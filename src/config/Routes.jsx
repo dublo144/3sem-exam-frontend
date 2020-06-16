@@ -6,10 +6,9 @@ import Jokes from '../containers/jokes';
 import Home from '../containers/home/Home.jsx';
 import ProtectedRoute from '../components/routes/ProtectedRoute.jsx';
 import Unauthorized from '../containers/unauthorized';
-import { AsyncProvider } from '../contexts/AsyncContext.jsx';
 import Recipes from '../containers/recipes/Recipes.jsx';
 import CreateMenuPlan from '../containers/createMenuPlan/CreateMenuPlan.jsx';
-import MyMenuPlans from '../containers/myMenuPlans/MyMenuPlans';
+import MyMenuPlans from '../containers/myMenuPlans/MyMenuPlans.jsx';
 
 const Routes = () => {
   return (
