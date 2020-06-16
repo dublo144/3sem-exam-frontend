@@ -15,7 +15,7 @@ const asyncReducer = (state, action) => {
     case 'FETCH':
       return { status: status.PENDING };
     case 'FETCH_SUCCESS':
-      return { ...state, status: status.RESOLVED, user: action.user };
+      return { ...state, status: status.RESOLVED, payload: action.res };
     case 'FETCH_FAILED':
       return { ...state, status: status.REJECTED, error: action.error };
     default: {
@@ -24,18 +24,16 @@ const asyncReducer = (state, action) => {
   }
 };
 
-const asyncFetch = async (dispatch, url, payload) => {
+const asyncFetch = async (dispatch, url, _payload = null) => {
   dispatch({ type: 'FETCH' });
   try {
     const opts = apiUtils.makeOptions(
-      payload.method,
-      payload.body,
-      payload.token
+      _payload.method,
+      _payload.body,
+      _payload.token
     );
-    // const users = await apiUtils.fetchData(url, opts);
-    const res = await fetch(url, opts);
-    const user = await res.json();
-    dispatch({ type: 'FETCH_SUCCESS', user });
+    const res = await apiUtils.fetchData(url, opts);
+    dispatch({ type: 'FETCH_SUCCESS', res });
   } catch (error) {
     dispatch({ type: 'FETCH_FAILED', error });
   }
@@ -68,8 +66,4 @@ const useAsyncDispatch = () => {
   return context;
 };
 
-const useAsync = () => {
-  return [useAsyncState(), useAsyncDispatch()];
-};
-
-export { AsyncProvider, useAsync, asyncFetch };
+export { AsyncProvider, useAsyncState, useAsyncDispatch, asyncFetch };

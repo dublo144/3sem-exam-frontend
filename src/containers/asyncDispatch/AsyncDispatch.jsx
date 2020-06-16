@@ -1,8 +1,13 @@
 import React from 'react';
-import { useAsync, asyncFetch } from '../../contexts/AsyncContext.jsx';
+import {
+  useAsyncDispatch,
+  useAsyncState,
+  asyncFetch
+} from '../../contexts/AsyncContext.jsx';
 
 const AsyncDispatch = () => {
-  const [state, dispatch] = useAsync();
+  const dispatch = useAsyncDispatch();
+  const state = useAsyncState();
   const [number, setNumber] = React.useState(1);
 
   const fetchUser = () => {

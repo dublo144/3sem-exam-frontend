@@ -1,15 +1,15 @@
 import React from 'react';
 import { Switch, Route } from 'react-router-dom';
 import NoMatch from '../containers/noMatch';
-import Content3 from '../containers/content3';
 import Scrape from '../containers/scrape/Scrape.jsx';
 import Jokes from '../containers/jokes';
 import Home from '../containers/home/Home.jsx';
 import ProtectedRoute from '../components/routes/ProtectedRoute.jsx';
 import Unauthorized from '../containers/unauthorized';
-import Count from '../containers/counter/Count.jsx';
-import AsyncDispatch from '../containers/asyncDispatch/AsyncDispatch.jsx';
 import { AsyncProvider } from '../contexts/AsyncContext.jsx';
+import Recipes from '../containers/recipes/Recipes.jsx';
+import CreateMenuPlan from '../containers/createMenuPlan/CreateMenuPlan.jsx';
+import MyMenuPlans from '../containers/myMenuPlans/MyMenuPlans';
 
 const Routes = () => {
   return (
@@ -26,18 +26,16 @@ const Routes = () => {
         <Scrape />
       </ProtectedRoute>
 
-      <Route path='/content3'>
-        <Content3 />
+      <ProtectedRoute authenticatedRoles={['user']} path='/createMenuPlan'>
+        <CreateMenuPlan />
+      </ProtectedRoute>
+
+      <Route path='/recipes'>
+        <Recipes />
       </Route>
 
-      <Route path='/counter'>
-        <Count />
-      </Route>
-
-      <Route path='/asyncUsers'>
-        <AsyncProvider>
-          <AsyncDispatch />
-        </AsyncProvider>
+      <Route path='/myMenuPlans'>
+        <MyMenuPlans />
       </Route>
 
       <Route path='/unauthorized'>

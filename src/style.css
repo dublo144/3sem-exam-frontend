@@ -27,3 +27,7 @@
   display: inline-block;
   margin-right: 15px;
 }
+
+.spacing-vertical {
+  margin: 2rem 0;
+}
