@@ -33,7 +33,9 @@ const MyMenuPlans = () => {
                 <Card.Description>
                   {menuPlan.dayPlans &&
                     menuPlan.dayPlans.map((dayPlan) => (
-                      <p>{`${dayPlan.weekday}: ${dayPlan.recipeName || ''}`}</p>
+                      <p key={dayPlan.id}>
+                        {`${dayPlan.weekday}: ${dayPlan.recipeName || ''}`}
+                      </p>
                     ))}
                 </Card.Description>
               </Card.Content>

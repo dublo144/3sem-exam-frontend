@@ -5,6 +5,7 @@ import {
   asyncFetch
 } from '../../contexts/AsyncContext.jsx';
 import { Card, Segment, Header } from 'semantic-ui-react';
+import { Link } from 'react-router-dom';
 
 const Recipes = () => {
   const dispatch = useAsyncDispatch();
@@ -21,12 +22,12 @@ const Recipes = () => {
       <Header>All Recipes</Header>
       <Card.Group itemsPerRow={3}>
         {state.payload &&
-          state.payload.map((data) => (
-            <Card key={data.id}>
+          state.payload.map((recipe) => (
+            <Card key={recipe.id} as={Link} to={`/details/${recipe.id}`}>
               <Card.Content>
-                <Card.Header>{data.name}</Card.Header>
+                <Card.Header>{recipe.name}</Card.Header>
                 <Card.Description>
-                  <p>Preptime: {data.prepTime} minutes</p>
+                  <p>Preptime: {recipe.prepTime} minutes</p>
                 </Card.Description>
               </Card.Content>
             </Card>

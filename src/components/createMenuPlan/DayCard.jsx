@@ -1,15 +1,16 @@
 import React from 'react';
-import { Card, Dropdown } from 'semantic-ui-react';
+import { Card, Dropdown, Input } from 'semantic-ui-react';
 
 const DayCard = ({ dayname, choices, selectedChoices, setSelectedChoices }) => {
   const handleChange = (e, { value, options }) => {
     const recipe = options.filter((option) => option.key === value);
     const recipeName = recipe[0] && recipe[0].text;
+
     setSelectedChoices({
       ...selectedChoices,
       menuPlans: [
         ...selectedChoices.menuPlans,
-        { weekday: dayname, recipeId: value, recipeName, servings: 1 }
+        { weekday: dayname, recipeId: value, recipeName, servings: 2 }
       ]
     });
   };
@@ -28,6 +29,7 @@ const DayCard = ({ dayname, choices, selectedChoices, setSelectedChoices }) => {
               options={choices}
               onChange={handleChange}
             />
+            <Input type={'number'} placeholder={'Servings'} />
           </Card.Description>
         </Card.Content>
       </Card>

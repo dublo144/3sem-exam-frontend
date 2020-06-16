@@ -66,24 +66,12 @@ export default function Header() {
           Home
         </Menu.Item>
 
+        <Menu.Item as={NavLink} to='/recipes' name='recipes'>
+          Recipes
+        </Menu.Item>
+
         <Menu.Item as={NavLink} to='/CreateMenuPlan' name='menuPlans'>
           Create Menu Plan
-        </Menu.Item>
-
-        <Menu.Item as={NavLink} to='/scrape' name='scrape'>
-          Scrape
-        </Menu.Item>
-
-        <Menu.Item as={NavLink} to='/content3' name='content3'>
-          Adv. State
-        </Menu.Item>
-
-        <Menu.Item as={NavLink} to='/counter' name='counter'>
-          Counter
-        </Menu.Item>
-
-        <Menu.Item as={NavLink} to='/asyncUsers' name='asyncUsers'>
-          Async users
         </Menu.Item>
 
         {handleLoginLogOut()}

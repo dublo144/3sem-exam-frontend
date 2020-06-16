@@ -3,9 +3,6 @@ import { Route, Redirect } from 'react-router-dom';
 import { useAuthState } from '../../contexts/AuthContext.jsx';
 
 const ProtectedRoute = ({ children, authenticatedRoles, ...rest }) => {
-  // const {
-  //   user: { isLoggedIn, roles }
-  // } = useAuth();
   const { isLoggedIn, roles } = useAuthState();
   return (
     <Route

@@ -1,6 +1,6 @@
 import React from 'react';
 import { Input, Card, Button } from 'semantic-ui-react';
-import DayCard from './DayCard.jsx';
+import DayCard from '../../components/createMenuPlan/DayCard.jsx';
 import {
   useAsyncDispatch,
   useAsyncState,
