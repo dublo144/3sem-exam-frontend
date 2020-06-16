@@ -38,5 +38,5 @@ script:
 deploy:
   provider: surge
   project: './build/'
-  domain: https://madsbrandt-frontendstarter.surge.sh
+  domain: https://madsbrandt-3sem-exam.surge.sh
   skip_cleanup: true

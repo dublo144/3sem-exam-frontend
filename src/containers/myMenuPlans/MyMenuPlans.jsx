@@ -1,5 +1,5 @@
 import React from 'react';
-import { Segment, Header, Card } from 'semantic-ui-react';
+import { Segment, Header, Card, Button } from 'semantic-ui-react';
 import {
   useAsyncDispatch,
   asyncFetch,
@@ -33,6 +33,16 @@ const MyMenuPlans = () => {
                       <p>{`${dayPlan.weekday}: ${dayPlan.recipeName || ''}`}</p>
                     ))}
                 </Card.Description>
+              </Card.Content>
+              <Card.Content extra>
+                <div className='ui two buttons'>
+                  <Button basic color='green'>
+                    Edit
+                  </Button>
+                  <Button basic color='red'>
+                    Delete
+                  </Button>
+                </div>
               </Card.Content>
             </Card>
           ))}
