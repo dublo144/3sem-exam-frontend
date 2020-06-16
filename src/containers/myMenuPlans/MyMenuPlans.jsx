@@ -1,7 +1,8 @@
 import React from 'react';
-import { Segment, Header, Card, Button } from 'semantic-ui-react';
+import { Segment, Header, Card } from 'semantic-ui-react';
 import { useAuthState } from '../../contexts/AuthContext.jsx';
 import { apiUtils } from '../../utils/apiUtils.js';
+import MenuPlanCard from '../../components/myMenuPlans/MenuPlanCard.jsx';
 
 const MyMenuPlans = () => {
   const { username } = useAuthState();
@@ -14,46 +15,18 @@ const MyMenuPlans = () => {
       .then((res) => setMenuPlans(res));
   }, [username]);
 
-  const handleRemoveMenuPlan = (id) => {
-    const opts = apiUtils.makeOptions('GET');
-    apiUtils
-      .fetchData(`/menuplans/remove/${username}/${id}`, opts)
-      .then((res) => setMenuPlans(res.menuPlans));
-  };
-
   return (
     <Segment raised style={{ height: '100vh' }}>
       <Header>My Menu Plans</Header>
       <Card.Group itemsPerRow={3}>
         {menuPlans &&
           menuPlans.map((menuPlan) => (
-            <Card key={menuPlan.id}>
-              <Card.Content>
-                <Card.Header>Week {menuPlan.weeknumber}</Card.Header>
-                <Card.Description>
-                  {menuPlan.dayPlans &&
-                    menuPlan.dayPlans.map((dayPlan) => (
-                      <p key={dayPlan.id}>
-                        {`${dayPlan.weekday}: ${dayPlan.recipeName || ''}`}
-                      </p>
-                    ))}
-                </Card.Description>
-              </Card.Content>
-              <Card.Content extra>
-                <div className='ui two buttons'>
-                  <Button basic color='green'>
-                    Edit
-                  </Button>
-                  <Button
-                    basic
-                    color='red'
-                    onClick={() => handleRemoveMenuPlan(menuPlan.id)}
-                  >
-                    Delete
-                  </Button>
-                </div>
-              </Card.Content>
-            </Card>
+            <MenuPlanCard
+              key={menuPlan.id}
+              menuPlan={menuPlan}
+              setMenuPlans={setMenuPlans}
+              username={username}
+            />
           ))}
       </Card.Group>
     </Segment>
