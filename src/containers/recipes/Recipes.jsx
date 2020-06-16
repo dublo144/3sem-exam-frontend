@@ -1,28 +1,24 @@
 import React from 'react';
-import {
-  useAsyncDispatch,
-  useAsyncState,
-  asyncFetch
-} from '../../contexts/AsyncContext.jsx';
 import { Card, Segment, Header } from 'semantic-ui-react';
 import { Link } from 'react-router-dom';
+import { apiUtils } from '../../utils/apiUtils.js';
 
 const Recipes = () => {
-  const dispatch = useAsyncDispatch();
-  const state = useAsyncState();
+  const [recipes, setRecipes] = React.useState();
 
   React.useEffect(() => {
-    asyncFetch(dispatch, '/recipes', {
-      method: 'GET'
-    });
-  }, [dispatch]);
+    const opts = apiUtils.makeOptions('GET');
+    apiUtils
+      .fetchData('/recipes', opts)
+      .then((response) => setRecipes(response));
+  }, []);
 
   return (
     <Segment raised style={{ height: '100vh' }}>
       <Header>All Recipes</Header>
       <Card.Group itemsPerRow={3}>
-        {state.payload &&
-          state.payload.map((recipe) => (
+        {recipes &&
+          recipes.map((recipe) => (
             <Card key={recipe.id} as={Link} to={`/details/${recipe.id}`}>
               <Card.Content>
                 <Card.Header>{recipe.name}</Card.Header>
