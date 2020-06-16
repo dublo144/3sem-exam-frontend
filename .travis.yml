@@ -28,7 +28,7 @@ install:
 
 script:
   #start and wait for webpack dev server
-  - npm run start:ci & wait-on http://localhost:3000
+  - npm run start:ci
   #automated UI tests which records testing to cypress dashboard
   # - npm run cy:ci:test
   #sonar analyze code from repo and coverage from cypress
